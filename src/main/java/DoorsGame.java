@@ -7,13 +7,17 @@ public class DoorsGame {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         final long[] winCount = new long[1];
-        final int N = scanner.nextInt();
+        final int n = scanner.nextInt();
 
         Kernel kernel = new Kernel() {
             public void run() {
-                final int winDore = (int) Math.round(Math.random() * 2);
-                int selectedDore = (int) Math.round(Math.random() * 2);
-                int openedDoreIndex = 3 - selectedDore - winDore;
+                final int winDore = (int) (Math.random() * 3);
+                final int selectedDore = (int) (Math.random() * 3);
+                int openedDoreIndex = (int) (Math.random() * 3);
+
+                while (openedDoreIndex == winDore || openedDoreIndex == selectedDore) {
+                    openedDoreIndex = (int) (Math.random() * 3);
+                }
 
                 if (3 - selectedDore - openedDoreIndex == winDore) {
                     winCount[0]++;
@@ -21,9 +25,9 @@ public class DoorsGame {
             }
         };
 
-        kernel.execute(Range.create(N));
+        kernel.execute(Range.create(n));
 
-        System.out.println((double) winCount[0] / N);
+        System.out.println((double) winCount[0] / n);
 
         kernel.dispose();
     }
