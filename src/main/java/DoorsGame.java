@@ -1,11 +1,9 @@
 import com.aparapi.Kernel;
 import com.aparapi.Range;
 
-import java.util.ArrayList;
-import java.util.Random;
 import java.util.Scanner;
 
-public class DorsGame {
+public class DoorsGame {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         final long[] winCount = new long[1];
